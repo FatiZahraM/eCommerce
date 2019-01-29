@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+<div class="container">
+
+
+    <main role="main" class="container">
+              <div class="jumbotron">
+                <h1>Navbar example</h1>
+                <p class="lead">This example is a quick exercise to illustrate how the top-aligned navbar works. As you scroll, this navbar remains in its original position and moves with the rest of the page.</p>
+                <a class="btn btn-lg btn-primary" href="/docs/4.2/components/navbar/" role="button">View navbar docs &raquo;</a>
+              </div>
+    </main>
+
+</div>
+
+{% block content %}
+
+
+<div class="container">
+
+    <div class="row">
+ {% for product in products %}
+
+        <div class="col-sm-4">
+            <div class="thumbnail">
+                        {% for item in product.productimage_set.all %}
+                        {% if item.featured %}
+                    <img class="img-responsive" src="{{item.image.url}}">
+                        {% endif %}
+                        {% endfor %}
+
+                    <div class="caption">
+                        <a href="{% url 'products:single_product' slug=product.slug %}"><h3>{{product.title}}</h3></a>
+                        <p>{{product.description | truncatewords:15}}</p>
+                        <p><a href="{% url 'products:single_product' slug=product.slug %}" class="btn btn-primary" role="button" >View</a>
+                            <a href="{% url 'products:single_product' slug=product.slug %}" class="btn btn-default" role="button">Button</a></p>
+
+                    </div>
+            </div>
+
+
+        </div>
+  {% endfor %}
+
+    </div>
+  </div>
+
+
+
+{% endblock %}
+
+
+
+

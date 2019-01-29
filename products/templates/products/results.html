@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+        {% if products %}
+        {% for each_product in products %}
+            <a href="{% url 'products:search' pk=each_product.pk %}">
+            <!--Upon successful search book image with hyperlink appears -->
+            <img src="{{each_product.image.url}}" alt="No Image"></a>
+            <p>{{each_product.title}}</p>
+
+        {% endfor %}
+        {% endif %}
+
+
+{% endblock %}
